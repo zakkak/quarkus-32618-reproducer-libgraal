@@ -57,10 +57,10 @@ do
 done
 
 # merge results from different runs in one json file
-jq -s '.[] |= . + {configuration:"mandrel-default"}' $RESULTS/mandrel-default-*/code-with-quarkus-1.0.0-SNAPSHOT-runner-timing-stats.json > $RESULTS/mandrel-default.json
-jq -s '.[] |= . + {configuration:"mandrel-graaljit"}' $RESULTS/mandrel-graaljit-*/code-with-quarkus-1.0.0-SNAPSHOT-runner-timing-stats.json > $RESULTS/mandrel-graaljit.json
-jq -s '.[] |= . + {configuration:"graal-default"}' $RESULTS/graal-default-*/code-with-quarkus-1.0.0-SNAPSHOT-runner-timing-stats.json > $RESULTS/graal-default.json
-jq -s '.[] |= . + {configuration:"graal-nolib-graal"}' $RESULTS/graal-nolib-graal-*/code-with-quarkus-1.0.0-SNAPSHOT-runner-timing-stats.json > $RESULTS/graal-nolib-graal.json
-jq -s '.[] |= . + {configuration:"graal-nolib-nograal"}' $RESULTS/graal-nolib-nograal-*/code-with-quarkus-1.0.0-SNAPSHOT-runner-timing-stats.json > $RESULTS/graal-nolib-nograal.json
+jq -s '.[] |= . + {configuration:"mandrel-default"}' $RESULTS/mandrel-default-*/*-timing-stats.json > $RESULTS/mandrel-default.json
+jq -s '.[] |= . + {configuration:"mandrel-graaljit"}' $RESULTS/mandrel-graaljit-*/*-timing-stats.json > $RESULTS/mandrel-graaljit.json
+jq -s '.[] |= . + {configuration:"graal-default"}' $RESULTS/graal-default-*/*-timing-stats.json > $RESULTS/graal-default.json
+jq -s '.[] |= . + {configuration:"graal-nolib-graal"}' $RESULTS/graal-nolib-graal-*/*-timing-stats.json > $RESULTS/graal-nolib-graal.json
+jq -s '.[] |= . + {configuration:"graal-nolib-nograal"}' $RESULTS/graal-nolib-nograal-*/*-timing-stats.json > $RESULTS/graal-nolib-nograal.json
 # merge all results in a single file as an array
 jq -c -r -s 'flatten' $RESULTS/*.json > $RESULTS/all.json
